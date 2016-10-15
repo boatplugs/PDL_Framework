@@ -6,7 +6,8 @@ function love.load() -- called with scan origin and dimens
 	player = require("player")
 	state = require("state")
 	check = require("check")
-	MapFill = 0
+	worker = require("worker")
+	MapFill = "#"
 	ItemList = {}
 	CreatureList = {}
 	ObjectList = {}
@@ -19,7 +20,7 @@ function love.load() -- called with scan origin and dimens
 	if State == 1 then
 	state.Set(State)
 --	check.Area({1,1},3,3)
---	object.CreateObject("item","Iron Sword", "S", {16,18}, 3)
+	object.CreateObject("Wall","Iron Sword", "S", {16,18}, 3)
 --	object.CreateObject("item","Gold Coin", "$", {16,18}, 0)
 	end
 	print("load")
@@ -41,8 +42,11 @@ function love.update(dt)
 			love.event.quit()
 		elseif key == 'n' then
 			stage.AddNoise()
+		elseif key == 'w' then
+			object.CreateObject("worker","worker","w",{25,25})
+			
 		end
-
+		
 		if Player ~= nill then
 			if key == 'kp7' then
 				player.Move(key)
@@ -54,6 +58,7 @@ function love.update(dt)
 				player.Move(key)
 			elseif key == 'kp5' then
 				player.Move(key)
+				worker.Update()
 			elseif key == 'kp6' then
 				player.Move(key)
 			elseif key == 'kp1' then

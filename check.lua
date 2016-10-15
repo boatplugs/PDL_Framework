@@ -22,10 +22,14 @@ function check.Area(origin,w,h)
 	for x=1, w do
 		checkTable[x] = {} 
 		for y=1, h do
-			local p = {origin[1]+x,origin[2]+y}
-			local val = Stage[p[1]][p[2]]
-			local check = {p,val}
-			checkTable[x][y] = check
+			local p = {origin[1]+x,origin[2]+y}	-- set p position to our origin
+			local val = Stage[p[1]][p[2]] 	-- pull the value from the stage
+			local t = {p,val}
+			if val == MapFill then	-- checking for empty space
+				return true
+			else
+				return false
+			end
 		end
 	end		
 end

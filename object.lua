@@ -4,7 +4,8 @@ function object.CreateObject(ent, label, symbol, pos, wt)
 	local newObj = {label, symbol, pos, wt}
 	if Stage[pos[1]][pos[2]] == MapFill then
 		if ent == "worker" then
-			table.insert(WorkerList, newObj)
+			local w = {pos, 3, 1}
+			table.insert(WorkerList, w)
 		elseif ent == "object" then
 			table.insert(ObjectList, newObj)
 		elseif ent == "creature" then
