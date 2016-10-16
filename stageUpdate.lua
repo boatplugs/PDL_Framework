@@ -61,7 +61,7 @@ function stage.StageUpdate()	-- Called to update the stage array
 		local pos = v[1]
 		local val = "w"
 		if pos ~= nil then
-		Stage[pos[1]][pos[2]] = val
+		-- Stage[pos[1]][pos[2]] = val
 		end
 	end
 	if checkTable ~= nil then

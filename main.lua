@@ -7,7 +7,7 @@ function love.load() -- called with scan origin and dimens
 	state = require("state")
 	check = require("check")
 	worker = require("worker")
-	MapFill = "#"
+	MapFill = "0"
 	ItemList = {}
 	CreatureList = {}
 	ObjectList = {}

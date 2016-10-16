@@ -42,9 +42,6 @@ function player.Move(dir)
 	local d = move[dir]
 	if d ~= nil then
 		newPos = d(pos)
-		if newPos == false then
-		print("You can't move that way!")
-		end
 	else
 	print("Not a valid direction!")
 	end
