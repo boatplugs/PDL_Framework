@@ -13,7 +13,7 @@ function love.load() -- called with scan origin and dimens
 	ObjectList = {}
 	WorkerList = {}
 	StageX, StageY = 78,48
-	Rand = love.math.newRandomGenerator()
+	Rand = love.math.newRandomGenerator(love.math.getRandomSeed(1,5124))
 	player.Create()
 	stage.CreateStage()
 	State = 1
@@ -43,8 +43,9 @@ function love.update(dt)
 		elseif key == 'n' then
 			stage.AddNoise()
 		elseif key == 'w' then
-			object.CreateObject("worker","worker","w",{25,25})
-			
+				local pos = {Rand:random(5,StageX-5),Rand:random(5,StageY-5)}
+				print("x,y",pos)
+				object.CreateObject("worker","worker","w",pos)
 		end
 		
 		if Player ~= nill then
@@ -58,7 +59,9 @@ function love.update(dt)
 				player.Move(key)
 			elseif key == 'kp5' then
 				player.Move(key)
-				worker.Update()
+				for i=1, #WorkerList do
+					worker.Update()
+				end
 			elseif key == 'kp6' then
 				player.Move(key)
 			elseif key == 'kp1' then

@@ -9,51 +9,42 @@ function check.Bounds(newPos)
 end
 
 function check.Tile(pos)
-	local stageVal = Stage[pos[1]][pos[2]]
-	if stageVal == MapFill then
-	return true
-	else
-	return false
+	if pos ~= nil then
+		local stageVal = Stage[pos[1]][pos[2]]
+		print("check.Tile", pos)
+		if stageVal == MapFill or stageVal == " " then
+		return true
+		else
+		return false
+		end
 	end
 end
 
 function check.Area(origin,w,h)
 	print("check.Area")
-	checkTable = {}
-	if w == 0 and h == 0 then
-		for x=1, 1 do
-			for y=1, 1 do
-				local p = {origin[1],origin[2]}
-				local val = Stage[p[1]][p[2]]
-				local t = {p, val}
-				if val == MapFill then
-					print("check.Area 1x1, true")
+	if w ~= nil and h ~= nil then
+		--print("check.Area, w,h")
+		local checkTable = {}
+		for x=1, w do
+			checkTable[x] = {}
+			for y=1, h do
+				local p = {origin[1]+x,origin[2]+y}
+				if Stage[p[1]][p[2]] == MapFill and stageVal == " " then
+					--print("check.Area, w,h, true")
 					return true
 				else
-					print("check.Area 1x1, false")
+					--print("check.Area, w,h, false")
 					return false
 				end
 			end
 		end
 	else
-		for x=1, w do
-			checkTable[x] = {} 
-			for y=1, h do
-				local p = {origin[1]+x,origin[2]+y}	-- set p position to our origin
-				local val = Stage[p[1]][p[2]] 	-- pull the value from the stage
-				local t = {p,"*"}
-				if val == MapFill then	-- checking for empty space
-					print("check.Area any, true")
-					return true
-					-- checkTable[x][y] = t
-				else
-					print("check.Area any, false")
-					return false
-				end
-			end
-		end
+		--print("check.Area, no w,h",origin)
+		local t = check.Tile(origin)
+		--print("check.Area, no w,h", t)
+		return t
 	end
+	
 end
-
 
 return check

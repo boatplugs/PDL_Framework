@@ -2,8 +2,7 @@ local object = {}
 
 function object.CreateObject(ent, label, symbol, pos, wt)
 		if ent == "worker" then
-			local w = {pos, 1, 0}
-			table.insert(WorkerList, w)
+			table.insert(WorkerList, pos)
 		elseif ent == "object" then
 			table.insert(ObjectList, {label,symbol,pos})
 		elseif ent == "creature" then

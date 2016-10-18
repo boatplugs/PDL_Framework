@@ -58,22 +58,11 @@ function stage.StageUpdate()	-- Called to update the stage array
 		end
 	end
 	for k, v in ipairs(WorkerList) do	-- iterate worker list and add symbol to the stage
-		local pos = v[1]
+		local pos = v
 		local val = "w"
 		if pos ~= nil then
-		-- Stage[pos[1]][pos[2]] = val
+			Stage[pos[1]][pos[2]] = val
 		end
-	end
-	if checkTable ~= nil then
-		for x=1, #checkTable do
-			for y=1, #checkTable[x] do
-				local t = checkTable[x][y]
-				local pos = t[1]
-				local val = t[2]
-				Stage[pos[1]][pos[2]] = val
-			end
-		end
-		checkTable = nil
 	end
 end
 
